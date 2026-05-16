@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>林木阳 · AI产品经理简历</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      padding: 2rem 1rem;
+    }
+
+    canvas#starsCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .resume-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 2rem;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.6);
+      color: #f0f0f0;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #b6dcff;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted rgba(255,255,255,0.4);
+    }
+
+    .back-link:hover { color: white; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, #ffffff, #a5d8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .header .contact {
+      color: #b0d4f0;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #cdedff;
+      border-left: 4px solid #4dabf7;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro-text {
+      color: #d0e8ff;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .job-item {
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+    }
+
+    .job-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: white;
+    }
+
+    .job-sub {
+      color: #8db8d0;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .job-desc {
+      color: #c2dff5;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding-left: 1rem;
+    }
+
+    .job-desc li {
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      background: rgba(77, 171, 247, 0.2);
+      border: 1px solid rgba(77, 171, 247, 0.4);
+      color: #c8e7ff;
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .project-highlight {
+      color: #c2dff5;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      padding-left: 1rem;
+    }
+
+    @media (max-width: 550px) {
+      .resume-container { padding: 1.5rem 1rem; }
+      .header h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+
+  <div class="resume-container">
+    <a href="index.html" class="back-link">← 返回首页</a>
+
+    <div class="header">
+      <h1>林木阳</h1>
+      <div class="contact">AI 产品经理 | 📧 linyang.mu@email.com | 🔗 github.com</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">👨‍💻 个人简介</div>
+      <p class="intro-text">
+        3 年产品经验，专注 AI 应用落地。擅长将大语言模型能力转化为用户可感知的产品价值，具备从 0 到 1 搭建 AI 产品的完整经验。主导过智能客服、AI 文档助手等多款产品，累计服务用户 50 万+。
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">💼 工作经历</div>
+      
+      <div class="job-item">
+        <div class="job-title">AI 产品经理 | 某科技公司</div>
+        <div class="job-sub">2023.03 - 至今</div>
+        <ul class="job-desc">
+          <li>主导智能文档问答助手从 0 到 1，基于 LangChain + RAG 架构，DAU 突破 2 万</li>
+          <li>搭建产品数据仪表盘，接入 LLM 实现自然语言查数，运营取数成本降低 60%</li>
+          <li>推动 AI 营销文案引擎落地，支持 8 种风格自动生成，转化率提升 23%</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-title">产品助理 | 某互联网公司</div>
+        <div class="job-sub">2021.07 - 2023.02</div>
+        <ul class="job-desc">
+          <li>负责用户反馈系统迭代，设计 AI 自动分类工单，处理效率提升 40%</li>
+          <li>参与 A/B 实验平台建设，制定指标体系，推动 30+ 个实验上线</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🛠 技能</div>
+      <div class="skill-tags">
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">RAG 架构</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">GPT-4o</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">A/B 测试</span>
+        <span class="skill-tag">PRD 撰写</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎓 教育背景</div>
+      <p class="intro-text">某大学 · 信息管理与信息系统 · 本科 · 2017 - 2021</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🏆 项目亮点</div>
+      <div class="project-highlight">
+        🥇 公司年度创新项目奖（智能文档助手，2024）<br>
+        📝 发表 AI 产品文章 15 篇，累计阅读 30 万+<br>
+        🎤 内部 AI 分享讲师，培训 200+ 人次
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('starsCanvas');
+      const ctx = canvas.getContext('2d');
+      let width, height, stars = [];
+
+      function initStars(count) {
+        stars = [];
+        for (let i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 2.2 + 0.4,
+            brightness: Math.random() * 0.7 + 0.3,
+            speed: Math.random() * 0.25 + 0.05
+          });
+        }
+      }
+
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        initStars(180);
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, width, height);
+        for (let s of stars) {
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${s.brightness})`;
+          ctx.fill();
+          s.y += s.speed;
+          if (s.y > height + 5) { s.y = -5; s.x = Math.random() * width; }
+        }
+        requestAnimationFrame(drawStars);
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      drawStars();
+    })();
+  </script>
+</body>
+</html>
