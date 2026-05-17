@@ -16,10 +16,11 @@
             background: #0a0a1a;
             color: #e0e0e0;
             font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            overflow-x: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         canvas {
@@ -30,58 +31,75 @@
             pointer-events: none;
         }
 
-        .container {
+        .main-wrapper {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 900px;
-            padding: 60px 30px 40px;
+            max-width: 1100px;
+            padding: 40px 30px;
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        /* 左侧个人信息区 */
+        .left-panel {
+            flex: 0 0 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px 28px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .avatar {
-            width: 130px;
-            height: 130px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 50px;
+            font-size: 42px;
             color: white;
-            margin-bottom: 28px;
-            box-shadow: 0 8px 40px rgba(102, 126, 234, 0.4);
-            border: 3px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
+            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.35);
+            border: 3px solid rgba(255, 255, 255, 0.12);
             flex-shrink: 0;
         }
 
         .title-name {
-            font-size: 2.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             background: linear-gradient(120deg, #a8c0ff, #e0c3fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            text-align: center;
         }
 
         .subtitle {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             color: #8892b0;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            text-align: center;
         }
 
         .typing-box {
-            height: 36px;
-            font-size: 1.25rem;
+            height: 28px;
+            font-size: 1rem;
             color: #64ffda;
             font-family: 'Courier New', monospace;
-            margin-bottom: 50px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -90,7 +108,7 @@
         .cursor {
             display: inline-block;
             width: 2px;
-            height: 24px;
+            height: 20px;
             background: #64ffda;
             animation: blink 0.9s steps(1) infinite;
         }
@@ -100,64 +118,60 @@
             50% { opacity: 0; }
         }
 
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ccd6f6;
-            margin-bottom: 24px;
-            letter-spacing: 2px;
-            text-align: center;
-            position: relative;
+        .contact-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: #64ffda;
-            margin: 12px auto 0;
-            border-radius: 1px;
+        .contact-item {
+            font-size: 0.78rem;
+            color: #8892b0;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px 14px;
+            border-radius: 16px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
-        .resume-wrapper {
-            width: 100%;
+        /* 右侧简历区 */
+        .right-panel {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
         }
 
         .resume-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 28px 32px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 20px 24px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: border-color 0.25s ease;
         }
 
         .resume-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            border-color: rgba(100, 255, 218, 0.3);
+            border-color: rgba(100, 255, 218, 0.25);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
         .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 17px;
             flex-shrink: 0;
         }
 
@@ -167,33 +181,33 @@
         .icon-exp { background: rgba(255, 215, 0, 0.15); color: #ffd700; }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #e6f1ff;
             letter-spacing: 1px;
         }
 
-        .edu-item {
+        .edu-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            margin-bottom: 10px;
+            gap: 8px;
         }
 
         .edu-school {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 500;
             color: #ccd6f6;
         }
 
         .edu-degree {
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             color: #8892b0;
         }
 
         .edu-time {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: #64ffda;
             font-family: 'Courier New', monospace;
         }
@@ -201,86 +215,83 @@
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .skill-tag {
-            background: rgba(100, 255, 218, 0.08);
-            border: 1px solid rgba(100, 255, 218, 0.2);
+            background: rgba(100, 255, 218, 0.07);
+            border: 1px solid rgba(100, 255, 218, 0.18);
             color: #64ffda;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 5px 13px;
+            border-radius: 18px;
+            font-size: 0.8rem;
             letter-spacing: 0.5px;
         }
 
-        .project-item {
-            margin-bottom: 16px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .project-compact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
-        .project-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
+        .project-mini {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            padding: 12px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .project-name {
-            font-size: 1rem;
+            font-size: 0.88rem;
             font-weight: 600;
             color: #e6f1ff;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .project-desc {
-            font-size: 0.9rem;
+            font-size: 0.76rem;
             color: #8892b0;
-            line-height: 1.6;
-        }
-
-        .exp-item {
-            margin-bottom: 14px;
-        }
-
-        .exp-item:last-child {
-            margin-bottom: 0;
+            line-height: 1.5;
         }
 
         .exp-role {
-            font-size: 1rem;
+            font-size: 0.92rem;
             font-weight: 600;
             color: #e6f1ff;
         }
 
         .exp-company {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #64ffda;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .exp-desc {
-            font-size: 0.88rem;
-            color: #8892b0;
-            line-height: 1.6;
-        }
-
-        .footer {
-            margin-top: 40px;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 2px;
+            color: #8892b0;
+            line-height: 1.5;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 16px 30px;
+        .footer-text {
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 2px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 850px) {
+            .main-wrapper {
+                flex-direction: column;
+                padding: 24px 16px;
+                gap: 20px;
             }
-            .resume-card {
-                padding: 20px 18px;
+            .left-panel {
+                flex: 0 0 auto;
+                padding: 28px 20px;
             }
-            .title-name {
-                font-size: 2rem;
+            .project-compact {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -288,31 +299,40 @@
 <body>
     <canvas id="stars"></canvas>
 
-    <div class="container">
-        <div class="avatar">🤖</div>
-        <div class="title-name">YOUR NAME</div>
-        <div class="subtitle">AI ENGINEER · CREATOR</div>
+    <div class="main-wrapper">
 
-        <div class="typing-box">
-            <span id="typing-text"></span><span class="cursor"></span>
+        <!-- 左侧个人信息 -->
+        <div class="left-panel">
+            <div class="avatar">🤖</div>
+            <div class="title-name">YOUR NAME</div>
+            <div class="subtitle">AI ENGINEER · CREATOR</div>
+            <div class="typing-box">
+                <span id="typing-text"></span><span class="cursor"></span>
+            </div>
+            <div class="contact-row">
+                <span class="contact-item">📧 yourname@email.com</span>
+                <span class="contact-item">📱 138-xxxx-xxxx</span>
+                <span class="contact-item">🔗 github.com/yourname</span>
+            </div>
         </div>
 
-        <div class="section-title">个 人 简 历</div>
+        <!-- 右侧简历 -->
+        <div class="right-panel">
 
-        <div class="resume-wrapper">
-
+            <!-- 教育背景 -->
             <div class="resume-card">
                 <div class="card-header">
                     <div class="card-icon icon-edu">🎓</div>
                     <span class="card-title">教育背景</span>
                 </div>
-                <div class="edu-item">
+                <div class="edu-row">
                     <span class="edu-school">XX大学</span>
                     <span class="edu-time">2021 - 2025</span>
                 </div>
                 <div class="edu-degree">计算机科学与技术 · 本科</div>
             </div>
 
+            <!-- 技术栈 -->
             <div class="resume-card">
                 <div class="card-header">
                     <div class="card-icon icon-skill">⚡</div>
@@ -330,40 +350,46 @@
                 </div>
             </div>
 
+            <!-- 项目经历 -->
             <div class="resume-card">
                 <div class="card-header">
                     <div class="card-icon icon-project">🚀</div>
                     <span class="card-title">项目经历</span>
                 </div>
-                <div class="project-item">
-                    <div class="project-name">AI 智能对话平台</div>
-                    <div class="project-desc">基于大语言模型构建多轮对话系统，集成 RAG 检索增强生成，实现知识库问答与上下文记忆功能。</div>
-                </div>
-                <div class="project-item">
-                    <div class="project-name">图像风格迁移工具</div>
-                    <div class="project-desc">使用 PyTorch 实现神经风格迁移算法，支持用户上传图片并实时预览风格化效果，部署于云端。</div>
-                </div>
-                <div class="project-item">
-                    <div class="project-name">个人 AI 作品集网站</div>
-                    <div class="project-desc">从零设计并开发响应式个人主页，集成星空粒子背景与打字机特效，托管于 GitHub Pages。</div>
+                <div class="project-compact">
+                    <div class="project-mini">
+                        <div class="project-name">AI 智能对话平台</div>
+                        <div class="project-desc">基于大语言模型构建多轮对话系统，集成 RAG 检索增强生成，实现知识库问答。</div>
+                    </div>
+                    <div class="project-mini">
+                        <div class="project-name">图像风格迁移工具</div>
+                        <div class="project-desc">使用 PyTorch 实现神经风格迁移，支持实时预览并部署于云端。</div>
+                    </div>
+                    <div class="project-mini">
+                        <div class="project-name">个人 AI 作品集网站</div>
+                        <div class="project-desc">从零设计响应式个人主页，集成星空粒子背景与打字机特效。</div>
+                    </div>
+                    <div class="project-mini">
+                        <div class="project-name">数据分析可视化面板</div>
+                        <div class="project-desc">使用 React + D3.js 构建交互式数据看板，实时渲染大规模数据集。</div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 实习经历 -->
             <div class="resume-card">
                 <div class="card-header">
                     <div class="card-icon icon-exp">💼</div>
                     <span class="card-title">实习经历</span>
                 </div>
-                <div class="exp-item">
-                    <div class="exp-role">AI 算法实习生</div>
-                    <div class="exp-company">某科技公司 · 2024.06 - 2024.09</div>
-                    <div class="exp-desc">参与 NLP 模型微调与部署，协助搭建数据标注流水线，优化推理延迟 30%。</div>
-                </div>
+                <div class="exp-role">AI 算法实习生</div>
+                <div class="exp-company">某科技公司 · 2024.06 - 2024.09</div>
+                <div class="exp-desc">参与 NLP 模型微调与部署，协助搭建数据标注流水线，优化推理延迟 30%。</div>
             </div>
 
+            <div class="footer-text">© 2025 YOUR NAME · Powered by GitHub Pages</div>
         </div>
 
-        <div class="footer">© 2025 YOUR NAME · Powered by GitHub Pages</div>
     </div>
 
     <script>
@@ -456,10 +482,5 @@
             typeLoop();
         })();
     </script>
-</body>
-</html>
-      }
-    })();
-  </script>
 </body>
 </html>
