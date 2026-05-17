@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>AI 作品集 · 林木阳</title>
+  <meta name="description" content="林木阳 · AI产品经理 · 智能交互探索者的科技作品集">
+  <title>林木阳 · 科技蓝调AI作品集</title>
   <style>
     * {
       margin: 0;
@@ -12,16 +13,48 @@
     }
 
     body {
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      /* 科技渐变蓝深色基底：深邃星空蓝 + 电光蓝渐变过渡 */
+      background: radial-gradient(circle at 20% 30%, #0b1120, #030617);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', 'Roboto', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+      font-family: 'Segoe UI', 'Inter', 'Roboto', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
       padding: 2rem 1rem;
       margin: 0;
       position: relative;
       overflow-x: hidden;
+    }
+
+    /* 动态光晕层：增加科技蓝氛围，不干扰交互 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 40% 50%, rgba(30, 100, 200, 0.12), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 120, 255, 0.02) 0px,
+        rgba(0, 120, 255, 0.02) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+      pointer-events: none;
+      z-index: 1;
     }
 
     canvas#starsCanvas {
@@ -32,86 +65,110 @@
       height: 100%;
       z-index: 0;
       pointer-events: none;
+      opacity: 0.9;
     }
 
+    /* 主卡片 —— 未来玻璃面板 + 冰蓝发光边界 */
     .card {
       position: relative;
-      z-index: 2;
-      max-width: 700px;
+      z-index: 10;
+      max-width: 780px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-radius: 2.5rem;
-      padding: 2.8rem 2.2rem;
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
-      color: #f0f0f0;
-      transition: all 0.2s ease;
+      background: rgba(6, 18, 34, 0.55);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 3rem;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 25px 45px rgba(0, 10, 30, 0.6), 0 0 0 1px rgba(0, 180, 255, 0.25), 0 0 20px rgba(0, 120, 255, 0.3);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      color: #eef5ff;
     }
 
+    .card:hover {
+      box-shadow: 0 30px 55px rgba(0, 30, 70, 0.8), 0 0 0 1px rgba(0, 200, 255, 0.5), 0 0 28px rgba(0, 150, 255, 0.5);
+    }
+
+    /* 姓名 + 科技亮蓝渐变 */
     h1 {
-      font-size: 2.8rem;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
       margin-bottom: 0.3rem;
-      background: linear-gradient(135deg, #ffffff 0%, #a5d8ff 80%);
+      background: linear-gradient(135deg, #FFFFFF 0%, #7BC5FF 40%, #3D8EFF 80%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 5px rgba(0, 160, 255, 0.2);
     }
 
     .subtitle {
-      font-size: 1rem;
-      color: #b0d4f0;
+      font-size: 1.05rem;
+      color: #aae0ff;
       margin-bottom: 2rem;
-      border-left: 4px solid #4dabf7;
+      border-left: 4px solid #3d9eff;
       padding-left: 1.2rem;
-      font-weight: 300;
+      font-weight: 350;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 5px rgba(0, 160, 255, 0.3);
     }
 
+    /* 科技感打字机区域 */
     .typewriter {
-      font-size: 1.3rem;
-      font-weight: 400;
+      font-size: 1.35rem;
+      font-weight: 450;
       margin: 1.8rem 0 2rem;
-      min-height: 2.8rem;
-      color: #e0f0ff;
-      background: rgba(10, 20, 30, 0.5);
-      padding: 0.7rem 1.4rem;
-      border-radius: 40px;
+      min-height: 3.2rem;
+      color: #c9edff;
+      background: rgba(0, 30, 55, 0.65);
+      backdrop-filter: blur(4px);
+      padding: 0.75rem 1.6rem;
+      border-radius: 60px;
       display: inline-block;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      width: auto;
+      border: 1px solid rgba(50, 170, 255, 0.4);
+      box-shadow: 0 2px 10px rgba(0, 30, 100, 0.3);
+      letter-spacing: 0.3px;
     }
 
     .cursor {
       display: inline-block;
       width: 2px;
-      height: 1.4rem;
-      background: #ffffff;
-      margin-left: 5px;
+      height: 1.45rem;
+      background: #4db8ff;
+      margin-left: 6px;
       vertical-align: middle;
       animation: blink 0.9s infinite;
+      box-shadow: 0 0 4px #0af;
     }
 
     @keyframes blink {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+      50% { opacity: 0.25; }
     }
 
+    /* 章节标题 —— 科技感 */
     .section-title {
-      font-size: 1.5rem;
-      font-weight: 500;
+      font-size: 1.65rem;
+      font-weight: 550;
       margin: 2.2rem 0 1.4rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: #cdedff;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+      gap: 0.6rem;
+      color: #d4f0ff;
+      border-bottom: 1.5px solid rgba(0, 160, 255, 0.5);
       padding-bottom: 0.6rem;
+      letter-spacing: -0.2px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
+    .section-title span {
+      filter: drop-shadow(0 0 4px #2d9eff);
+    }
+
+    /* 项目网格布局（科技卡片） */
     .project-grid {
       display: flex;
       flex-direction: column;
@@ -119,76 +176,133 @@
     }
 
     .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 1.5rem;
-      padding: 1.2rem 1.5rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: transform 0.2s, background 0.3s;
+      background: rgba(12, 28, 48, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 1.8rem;
+      padding: 1.2rem 1.7rem;
+      border: 1px solid rgba(0, 160, 255, 0.3);
+      transition: all 0.25s ease-in-out;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
     }
 
     .project-card:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(20, 55, 90, 0.75);
+      transform: translateY(-3px) scale(1.01);
+      border-color: #2f9eff;
+      box-shadow: 0 15px 25px -8px rgba(0, 120, 255, 0.3), 0 0 0 1px rgba(80, 180, 255, 0.4);
     }
 
     .project-info h3 {
-      font-size: 1.3rem;
-      font-weight: 500;
-      margin-bottom: 0.2rem;
+      font-size: 1.32rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
       color: white;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .project-info p {
-      font-size: 0.9rem;
-      color: #c2dff5;
+      font-size: 0.88rem;
+      color: #bae2ff;
+      opacity: 0.9;
     }
 
+    /* 科技标签 —— 电流蓝 */
     .tag {
-      background: #1e3b4f;
-      color: #c8e7ff;
+      background: linear-gradient(115deg, #0a4970, #0a2b4e);
+      color: #c2ecff;
       padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 500;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 600;
       letter-spacing: 0.4px;
       white-space: nowrap;
+      border: 1px solid rgba(0, 200, 255, 0.4);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     }
 
+    /* 底部链接区 —— 冰蓝交互 */
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.4rem;
-      margin-top: 2.5rem;
+      gap: 1.8rem;
+      margin-top: 2.8rem;
       justify-content: center;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      font-weight: 450;
     }
 
     .footer-links a {
-      color: #b6dcff;
+      color: #b5e4ff;
       text-decoration: none;
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.4);
-      transition: color 0.2s;
+      border-bottom: 1px dotted rgba(100, 200, 255, 0.5);
+      transition: all 0.2s;
+      font-weight: 450;
+      letter-spacing: 0.3px;
+      padding: 0.2rem 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .footer-links a:hover {
-      color: white;
-      border-bottom: 1px solid white;
+      color: #ffffff;
+      border-bottom: 1px solid #3cafff;
+      text-shadow: 0 0 5px #3cafff;
+      transform: translateY(-1px);
     }
 
-    @media (max-width: 550px) {
+    /* 响应式适配 */
+    @media (max-width: 600px) {
       .card {
-        padding: 1.8rem 1.2rem;
+        padding: 1.8rem 1.4rem;
+        border-radius: 2rem;
       }
       h1 {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
       }
+      .typewriter {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .project-card {
+        padding: 1rem 1.2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .tag {
+        align-self: flex-start;
+        font-size: 0.7rem;
+      }
+      .footer-links {
+        gap: 1rem;
+      }
+    }
+
+    /* 自定义滚动条 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      background: #03101f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1269b0;
+      border-radius: 8px;
+    }
+
+    /* 让链接不可选中误触，干净 */
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
   </style>
 </head>
@@ -197,65 +311,78 @@
 
   <main class="card">
     <h1>林木阳</h1>
-    <div class="subtitle">🎯 AI 产品经理 · 智能交互探索者</div>
+    <div class="subtitle">
+      <span>⚡</span> AI 产品经理 · 智能交互探索者 <span style="font-size: 1rem;">| 蓝调科技</span>
+    </div>
 
     <div class="typewriter">
       <span id="typewriter-text"></span><span class="cursor"></span>
     </div>
 
     <div class="section-title">
-      <span>🚀</span> 精选项目
+      <span>🚀</span> 前沿项目
     </div>
 
     <div class="project-grid">
       <div class="project-card">
         <div class="project-info">
           <h3>🧠 智能文档问答助手</h3>
-          <p>基于RAG的PDF/网页多模态检索 · 语音输入</p>
+          <p>基于RAG的PDF/网页多模态检索 · 语音输入 · 高精度语义理解</p>
         </div>
-        <span class="tag">LangChain</span>
+        <span class="tag">LangChain · 知识增强</span>
       </div>
       <div class="project-card">
         <div class="project-info">
           <h3>📊 用户行为洞察仪表盘</h3>
-          <p>产品数据自动分析 · 异常检测 · 自动报告</p>
+          <p>产品数据自动分析 · 异常检测 · AI自动报告生成 & 归因</p>
         </div>
-        <span class="tag">SQL+LLM</span>
+        <span class="tag">SQL+LLM · 可视化</span>
       </div>
       <div class="project-card">
         <div class="project-info">
           <h3>🎨 AI创意营销文案引擎</h3>
-          <p>多风格文案生成 · A/B测试集成 · 品牌调性控制</p>
+          <p>多风格文案生成 · A/B测试集成 · 品牌调性微控</p>
         </div>
-        <span class="tag">GPT-4o</span>
+        <span class="tag">GPT-4o · 多模态对齐</span>
       </div>
     </div>
 
     <div class="footer-links">
-  <a href="resume.html">📄 我的简历</a>
-  <a href="#">📧 linyang.mu@ai portfolio</a>
-  <a href="#">🔗 小红书 · AI产品日常</a>
-  <a href="#">💼 即刻加入项目</a>
-</div>
+      <a href="resume.html">📄 我的简历 · 智能产品思维</a>
+      <a href="#" id="emailMock">📧 mu.linyang@aiforge.ai</a>
+      <a href="#">🔗 小红书 · AI产品日常</a>
+      <a href="#">💡 即刻加入项目协作</a>
+    </div>
   </main>
 
   <script>
     (function() {
-      // ---------- 星空背景 ----------
+      // ---------- 星空背景（科技冰蓝调）----------
       const canvas = document.getElementById('starsCanvas');
       const ctx = canvas.getContext('2d');
       let width, height;
       let stars = [];
 
-      function initStars(count = 200) {
+      function initStars(count = 220) {
         stars = [];
         for (let i = 0; i < count; i++) {
           stars.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            radius: Math.random() * 2.2 + 0.4,
-            brightness: Math.random() * 0.7 + 0.3,
-            speed: Math.random() * 0.25 + 0.05
+            radius: Math.random() * 2.5 + 0.4,
+            brightness: Math.random() * 0.7 + 0.2,   // 亮度范围更丰富
+            speed: Math.random() * 0.2 + 0.06,
+            // 增加蓝白倾向的色调微调，但主要颜色在绘图中统一为蓝白光谱
+          });
+        }
+        // 额外增加几颗“导航星” (亮且稍大)
+        for (let i = 0; i < 12; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 3.2 + 1.2,
+            brightness: Math.random() * 0.5 + 0.6,
+            speed: Math.random() * 0.08 + 0.02,
           });
         }
       }
@@ -265,20 +392,38 @@
         height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
-        initStars(180);
+        initStars(210);
       }
 
+      // 科技渐变蓝风格星星：冷白、淡蓝、浅青混合
       function drawStars() {
         if (!ctx || !canvas) return;
         ctx.clearRect(0, 0, width, height);
         for (let s of stars) {
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${s.brightness})`;
+          // 冰蓝科技色: 基础蓝色调 + 随亮度变化 (140, 200, 255)
+          const blueIntensity = 180 + Math.floor(75 * s.brightness);
+          const greenTint = 170 + Math.floor(70 * s.brightness);
+          const redComp = 120 + Math.floor(60 * s.brightness);
+          // 最终颜色偏向冰蓝/冷白
+          const r = Math.min(210, redComp);
+          const g = Math.min(235, greenTint);
+          const b = 255;
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${s.brightness * 0.7 + 0.3})`;
           ctx.fill();
+          
+          // 轻微光晕效果：大星星增加晕影
+          if (s.radius > 1.8 && s.brightness > 0.5) {
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = `rgba(60, 180, 255, 0.5)`;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+          
           s.y += s.speed;
-          if (s.y > height + 5) {
-            s.y = -5;
+          if (s.y > height + 8) {
+            s.y = -8;
             s.x = Math.random() * width;
           }
         }
@@ -292,18 +437,19 @@
       resizeCanvas();
       drawStars();
 
-      // ---------- 打字机效果 ----------
+      // ---------- 增强打字机效果（科技灵动感）----------
       const textElement = document.getElementById('typewriter-text');
       const phrases = [
-        "用AI重新定义产品体验。",
-        "让每一个交互都充满智慧。",
-        "正在构建下一代智能工具……",
-        "数据 + 模型 + 共情 = 好产品。"
+        "用AI重新定义产品体验 ✨",
+        "让每一个交互都充满智慧 🔮",
+        "构建下一代智能工具 · 人机共生",
+        "数据 + 模型 + 共情 = 好产品 ⚡",
+        "深度探索 AI 产品边界 🧬"
       ];
       let phraseIndex = 0;
       let charIndex = 0;
       let isDeleting = false;
-      let typeSpeed = 90;
+      let typeSpeed = 85;
 
       function typeEffect() {
         const currentPhrase = phrases[phraseIndex];
@@ -313,18 +459,18 @@
           charIndex++;
           if (charIndex === currentPhrase.length) {
             isDeleting = true;
-            typeSpeed = 1400; 
+            typeSpeed = 1500;   // 停驻欣赏时间
             setTimeout(typeEffect, typeSpeed);
             return;
           }
-          typeSpeed = 70 + Math.random() * 40;
+          typeSpeed = 55 + Math.random() * 40;
         } else {
           textElement.textContent = currentPhrase.substring(0, charIndex - 1);
           charIndex--;
           if (charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 300;
+            typeSpeed = 320;
           } else {
             typeSpeed = 35;
           }
@@ -334,6 +480,68 @@
 
       if (textElement) {
         typeEffect();
+      }
+      
+      // 小彩蛋: 模拟邮箱交互(防止默认跳转且展示提示，增加科技质感)
+      const emailLink = document.getElementById('emailMock');
+      if (emailLink) {
+        emailLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          // 优雅提示 (轻量复制邮箱)
+          const fakeEmail = "mu.linyang@aiforge.ai";
+          navigator.clipboard.writeText(fakeEmail).then(() => {
+            // 微提示 (不破坏UI的小反馈)
+            const tipSpan = document.createElement('div');
+            tipSpan.innerText = '📋 邮箱已复制 · 期待联系';
+            tipSpan.style.position = 'fixed';
+            tipSpan.style.bottom = '20px';
+            tipSpan.style.left = '50%';
+            tipSpan.style.transform = 'translateX(-50%)';
+            tipSpan.style.backgroundColor = 'rgba(0, 30, 60, 0.85)';
+            tipSpan.style.backdropFilter = 'blur(8px)';
+            tipSpan.style.color = '#b9f2ff';
+            tipSpan.style.padding = '8px 20px';
+            tipSpan.style.borderRadius = '40px';
+            tipSpan.style.fontSize = '0.85rem';
+            tipSpan.style.border = '1px solid #3b9eff';
+            tipSpan.style.zIndex = '999';
+            tipSpan.style.fontWeight = '500';
+            tipSpan.style.pointerEvents = 'none';
+            document.body.appendChild(tipSpan);
+            setTimeout(() => { tipSpan.remove(); }, 2000);
+          }).catch(() => {
+            alert('邮箱: mu.linyang@aiforge.ai');
+          });
+        });
+      }
+
+      // 可选: 增加卡片上微妙的动态光标跟随光晕 (提升科技交互感)
+      const card = document.querySelector('.card');
+      if (card) {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          // 动态边缘高光效果(仅视觉层次)
+          const xPercent = (x / rect.width) * 100;
+          const yPercent = (y / rect.height) * 100;
+          card.style.setProperty('--x-glow', `${xPercent}%`);
+          card.style.setProperty('--y-glow', `${yPercent}%`);
+        });
+        // 添加自定义变量动态光泽感 (轻微，不增加负担)
+        const style = document.createElement('style');
+        style.textContent = `
+          .card {
+            --x-glow: 50%;
+            --y-glow: 50%;
+            background: radial-gradient(circle at var(--x-glow) var(--y-glow), rgba(30, 140, 255, 0.12), rgba(6, 18, 34, 0.7));
+            transition: background 0.12s;
+          }
+          .card:hover {
+            background: radial-gradient(circle at var(--x-glow) var(--y-glow), rgba(40, 150, 250, 0.18), rgba(6, 18, 34, 0.65));
+          }
+        `;
+        document.head.appendChild(style);
       }
     })();
   </script>
